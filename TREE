@@ -33,6 +33,8 @@ vector <int> zigZagTraversal(Node* root)
     	   for(auto i : ans)
     	   result.push_back(i);
     	    
+            
+       
     	}
     	
     	return result;
@@ -112,6 +114,7 @@ public:
     }
 };
 
+
 3.Vertical Traversal of Binary Tree
 
 
@@ -159,3 +162,135 @@ vector<int> verticalOrder(Node *root)
         
         return ans;
     }
+
+
+4.Top View of Binary Tree
+
+
+vector<int> topView(Node *root)
+    {
+       vector<int> ans;
+       if(root == NULL )
+            return ans;
+        // hd, node->data
+        map<int, int> topNode ;
+        queue<pair<Node* , int>>q;
+        // second is hd
+        q.push(make_pair(root, 0));
+        while(!q.empty())
+        {
+            pair<Node* , int> temp = q.front();
+            q.pop();
+            Node* frontNode = temp.first;
+            int hd = temp.second;
+            
+            if(topNode.find(hd) == topNode.end())
+            {
+                topNode[hd] = frontNode->data;
+            }
+            
+            if(frontNode->left)
+                q.push(make_pair(frontNode->left, hd-1));
+            if(frontNode->right)
+                q.push(make_pair(frontNode->right, hd+1));
+        }
+        
+        for(auto i : topNode)
+        {
+            ans.push_back(i.second);
+        }
+        
+        return ans;
+    }
+    
+  
+  5.Bottom View of Binary Tree
+  
+  
+  
+  vector <int> bottomView(Node *root) {
+        vector<int> ans;
+       if(root == NULL )
+            return ans;
+        // hd, node->data
+        map<int, int> topNode ;
+        queue<pair<Node* , int>>q;
+        // second is hd
+        q.push(make_pair(root, 0));
+        while(!q.empty())
+        {
+            pair<Node* , int> temp = q.front();
+            q.pop();
+            Node* frontNode = temp.first;
+            int hd = temp.second;
+            
+            
+            topNode[hd] = frontNode->data;
+            
+            
+            if(frontNode->left)
+                q.push(make_pair(frontNode->left, hd-1));
+            if(frontNode->right)
+                q.push(make_pair(frontNode->right, hd+1));
+        }
+        
+        for(auto i : topNode)
+        {
+            ans.push_back(i.second);
+        }
+        
+        return ans;
+    }
+    
+    
+    
+    6.Left View of Binary Tree
+    
+    
+    
+    void solve(Node* root, vector<int> &ans, int level)
+{
+    if(root == NULL)
+        return ;
+    if(level == ans.size())
+        ans.push_back(root->data);
+        
+    solve(root->left, ans, level+1);
+    solve(root->right, ans, level+1);
+}
+vector<int> leftView(Node *root)
+{
+   vector<int> ans;
+   solve(root, ans, 0);
+   return ans;
+}
+
+
+
+7.Right View of Binary Tree
+
+
+
+class Solution
+{
+    private:
+    void solve(Node* root, vector<int> &ans, int level)
+    {
+        if(root == NULL)
+            return ;
+        if(level == ans.size())
+            ans.push_back(root->data);
+            
+        solve(root->right, ans, level+1);
+        solve(root->left, ans, level+1);
+    }
+    public:
+    //Function to return list containing elements of right view of binary tree.
+    vector<int> rightView(Node *root)
+    {
+       vector<int> ans;
+        solve(root, ans, 0);
+        return ans;
+    }
+};
+   
