@@ -1,0 +1,65 @@
+Find kth element of spiral matrix.........
+
+
+class Solution
+{
+    public:
+    /*You are required to complete this method*/
+    int findK(int a[MAX][MAX],int n,int m,int k)
+    {
+ 		 int startingRow = 0;
+        int startingCol = 0;
+        int endingRow = n-1;
+        int endingCol = m-1;
+
+        while(startingRow <= endingRow && startingCol <= endingCol)
+        {
+            for(int index = startingCol ; index <= endingCol ; index++)
+            {
+                if(k == 1)
+                    return a[startingRow][index];
+                
+               --k;
+                
+            }
+            startingRow++;
+
+            for(int index = startingRow ; index <= endingRow; index++)
+            {
+                if(k == 1  )
+                    return a[index][endingCol];
+                --k;
+                
+            }
+            endingCol--;
+
+            if(startingRow <= endingRow )
+            {
+                for(int index = endingCol; index >= startingCol ; index-- )
+                {
+                    if(k == 1  )
+                        return a[endingRow][index];
+                    --k;
+                }
+                endingRow--;
+            }
+
+            if(startingCol <= endingCol)
+            {
+                for(int index = endingRow; index >= startingRow ; index-- )
+                {
+                    if(k == 1  )
+                        return a[index][startingCol];
+                    
+                    --k;
+                    
+                }
+                startingCol++;
+
+            }
+        }
+        
+        return -1;
+
+    }
+};
