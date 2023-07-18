@@ -1,0 +1,33 @@
+Insertion Sort..............
+
+APPROACH 1:.............(Iterative method)....
+
+
+
+class Solution
+{
+    public:
+    
+    void insert(int arr[], int i)
+    {
+        int n = sizeof(arr)/sizeof(arr[i]);
+        insertionSort(arr, n);
+        
+    }
+     public:
+     
+    void insertionSort(int arr[], int n)
+    {
+      for(int i = 1; i< n; i++)
+      {
+          int x = arr[i];
+          int j = i-1;
+          while(j> -1 && arr[j] > x)
+          {
+              arr[j+1] = arr[j];
+              j--;
+          }
+          arr[j+1]  = x;
+      }
+    }
+};
