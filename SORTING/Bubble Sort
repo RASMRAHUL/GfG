@@ -1,0 +1,58 @@
+Bubble Sort........................
+
+APPROACH 1 : (Iterative method)................
+
+//User function Template for C++
+
+class Solution
+{
+    public:
+    //Function to sort the array using bubble sort algorithm.
+    void bubbleSort(int arr[], int n)
+    {
+        bool flag ;
+        for(int i = 0 ;i< n-1; i++)
+        {
+             flag = false;
+            for(int j = 0; j< n-1-i; j++)
+            {
+               
+                if(arr[j] > arr[j+1])
+                {
+                    swap(&arr[j], &arr[j+1]);
+                    flag = true;
+                }
+            }
+            if(flag == false)
+                break;
+        }
+    }
+};
+
+*********************************************************************************************************************************
+APPROACH 1 : (Recursive method)........................
+
+
+//User function Template for C++
+
+class Solution
+{
+    public:
+    
+    //USING RECURSSION
+    //Function to sort the array using bubble sort algorithm.
+    void bubbleSort(int arr[], int n)
+    {
+        if(n== 1) return ;
+        for(int i = 0 ; i< n-1 ; i++)
+        {
+            if(arr[i] > arr[i+1])
+                swap(arr[i], arr[i+1]);
+        }
+        
+        bubbleSort(arr, n-1);
+        
+    }
+};
+
+
